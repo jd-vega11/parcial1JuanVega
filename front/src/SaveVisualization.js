@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {Button, FormGroup, FormControl, ControlLabel} from "react-bootstrap";
-import request from "superagent";
-
 
 class SaveVisualization extends Component {
   constructor(props) {
@@ -33,20 +31,26 @@ class SaveVisualization extends Component {
       data: this.props.data        
     });
     console.log(body);
-    request
-    .post("/visualizations/")
-    .set("Content-Type", "application/json")
-    .send(body)
-    .end((err, res)=>{
-      console.log(res);
-      if(res.exists === "true")
-      {
-       alert('A visualization with that name already exists. Try again');
-      }
+    fetch('/visualizations/', {
+          method: 'POST',
+          body: body,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).then(response => {
+          console.log(response);
+          response.json().then(json => {
+            console.log(json);
+            if(json.exists === "true")
+            {
+             alert('A visualization with that name already exists. Try again');
+            }
 
-      this.props.onSubmit();
-
-   });
+            this.props.onSubmit();
+            
+         });
+    
+      });
   }
 
   render() {
