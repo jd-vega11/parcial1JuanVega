@@ -1,30 +1,31 @@
-# App-Denuncias
-Aplicación para denunciar robos que ocurren en Bogotá.
-Proyecto 2 para la clase de desarrollo web Uniandes.
+# Parcial 1
+Aplicación visualizar graficas a partir de vega-embed.
+Parcial 1 para la clase de desarrollo web Uniandes.
 Desarrollado usando Node.js, Express, y React.js
 
 # Instalación
 
-Para hacer una instalación local del sistema, corra los siguientes comandos:
+Para hacer una instalación local del sistema, corra los siguientes comandos luego de clonar el presente repositorio.
 <!--Falta el importar la base de datos-->
-- mongoimport -d appDenuncias -c users --jsonArray --file users.json
-- mongoimport -d appDenuncias -c robos --jsonArray --file robos.json
-- npm install
-- npm start
-- cd /frontdenuncias
+- Cree un archivo .env en la carpeta raiz con la siguiente estructura (puede modificar la URI según la configuración de su base de datos - local o cloud-)
+  MONGODB_URI='mongodb://localhost:27017/parcial1'
+  DB_NAME='parcial1'
+- yarn install
+- yarn start
+- cd /front
 - yarn install
 - yarn start
 
-# Autores
 
-- [Juan Sebastián Díaz](https://js-diaz.github.io/)
+# Autor
+
 - [Juan David Vega](https://jd-vega11.github.io/)
 
 # License
 
 MIT License
 
-Copyright (c) 2018 js.diaz
+Copyright (c) 2018 Juan Vega
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
