@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import Footer from "./Footer.js";
 import SaveVisualization from "./SaveVisualization.js";
 import Visualizations from "./Visualizations.js";
+import ComponenteCreativo from "./ComponenteCreativo.js";
 
 //External components
 import vegaEmbed from 'vega-embed';
@@ -23,7 +24,8 @@ class App extends Component {
       };
       this.handleJSONinput = this.handleJSONinput.bind(this);      
       this.papaparseTheCSV = this.papaparseTheCSV.bind(this);
-      this.getVisualizations = this.getVisualizations.bind(this);
+      this.getVisualizations = this.getVisualizations.bind(this);      
+      this.showVis = this.showVis.bind(this);
   }
 
   handleJSONinput( )
@@ -108,9 +110,12 @@ class App extends Component {
   }
 
 
-  getVisualizations( )
+  getVisualizations(filter)
   {
-    fetch("/visualizations/")
+    if(filter)
+    {
+      console.log(filter);
+      fetch("/visualizations?mark=" + filter)
       .then((res) => {
         if (res.status !== 200) {
           console.log("Error getting data");
@@ -121,6 +126,33 @@ class App extends Component {
         console.log(json);
         this.setState({vis: json});
       });
+
+    }
+    else
+    {
+      fetch("/visualizations")
+      .then((res) => {
+        if (res.status !== 200) {
+          console.log("Error getting data");
+        }
+        return res.json();
+      })
+      .then((json) => {
+        console.log(json);
+        this.setState({vis: json});
+      });
+    }
+    
+  }
+
+  showVis(spec, data)
+  {
+    this.setState({csvData:data, spec:spec}, ()=>{
+      this.textarea.value = JSON.stringify(spec);
+      this.graph(spec);
+    });
+    
+    console.log("Visualizacion mostrada");
   }
 
 
@@ -160,7 +192,10 @@ class App extends Component {
           <SaveVisualization onSubmit={this.getVisualizations} spec={this.state.spec} data={this.state.csvData} />
         </div>
         <div className="row ml-5">
-          <Visualizations get={this.getVisualizations} vis={this.state.vis}/>
+          <ComponenteCreativo get={this.getVisualizations} />
+        </div>
+        <div className="row ml-5">
+          <Visualizations get={this.getVisualizations} vis={this.state.vis} onClick={this.showVis}/>
         </div>        
         <Footer/>          
       </div>

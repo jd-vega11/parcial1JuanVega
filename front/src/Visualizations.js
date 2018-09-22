@@ -20,7 +20,8 @@ class Visualizations extends Component {
                   <div className="card-header">Visualization Name: {vis.nameVisualization}</div>                             
                   <div className="card-body text-primary">
                     <h5 className="card-title">Usuario: {vis.user}</h5>
-                    <p className="card-text"> Type:{vis.spec.mark} </p>                    
+                    <p className="card-text"> Type:{vis.spec.mark} </p>
+                    <button onClick={() => this.props.onClick(vis.spec, vis.data)}> Show Visualization </button>                    
                   </div>
                 </div>                       
             </div>
@@ -36,12 +37,12 @@ render() {
     <div className="container-fuid">
       <div className="row">
         <div className="col offset-md-4">
-           <h4 className="myFont">The last 20 Visualizations!</h4>         
+           <h4 className="myFont">Visualizations!</h4>         
         </div>   
       </div>
       <div className="row mr-sm-0 align-items-center">    
         <div className="row mr-sm-0 align-items-center">
-          {this.renderVis()}            
+          {this.renderVis()}              
         </div>        
       </div> 
     </div>

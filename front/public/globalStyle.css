@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Cabin');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
 .copyright {
     font-size:.9rem;
     color: #636060;
@@ -49,3 +53,4 @@
     color: rgb(207,164,60);
     color: white;
 }
+

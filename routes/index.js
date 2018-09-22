@@ -91,7 +91,17 @@ function newVisualization(data, cb) {
 //Pathnames for Visualizations
 router.get('/visualizations', function (req, res) {
   res.setHeader('Content-Type', 'application/json');
-  getAllVisualizations(req.filter, (data) => res.send(data));
+  console.log(req.query);
+  let filter = {};
+  if(req.query.mark)
+  {
+    filter ={
+        'spec.mark': req.query.mark        
+      }
+  }
+  console.log(filter);
+  
+  getAllVisualizations(filter, (data) => res.send(data));
 });
 
 router.post('/visualizations', function (req, res) {
