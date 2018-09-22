@@ -8,8 +8,8 @@ Desarrollado usando Node.js, Express, y React.js
 Para hacer una instalación local del sistema, corra los siguientes comandos luego de clonar el presente repositorio.
 <!--Falta el importar la base de datos-->
 - Cree un archivo .env en la carpeta raiz con la siguiente estructura (puede modificar la URI según la configuración de su base de datos - local o cloud-)
-  MONGODB_URI='mongodb://localhost:27017/parcial1'
-  DB_NAME='parcial1'
+  - MONGODB_URI='mongodb://localhost:27017/parcial1'
+  - DB_NAME='parcial1'
 - yarn install
 - yarn start
 - cd /front
